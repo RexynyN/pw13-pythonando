@@ -17,6 +17,14 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+from django.contrib.messages import constants
+
+MESSAGE_TAGS = {
+    constants.SUCCESS: 'bg-green-50 text-green-700',
+    constants.ERROR: 'bg-red-50 text-red-700'
+}
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -41,6 +49,7 @@ INSTALLED_APPS = [
 
     # Custom 
     'usuarios',
+    'mentorados',
 ]
 
 
@@ -133,3 +142,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
