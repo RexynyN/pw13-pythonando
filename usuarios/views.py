@@ -37,8 +37,7 @@ def cadastro(request: WSGIRequest):
         password=senha
     )
 
-    
-    return redirect('/usuarios/blob')
+    return redirect('/usuarios/login')
 
 
 

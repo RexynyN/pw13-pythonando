@@ -157,5 +157,22 @@
      
   </div>
 
+  <script src="/static/chart.js"></script>
 
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: {{estagios_flat|safe}},
+        datasets: [{
+          label: '',
+          data: {{qtd_estagios|safe}},
+          borderWidth: 1
+        }]
+      },
+      
+    });
+  </script>
 {% endblock 'body' %}

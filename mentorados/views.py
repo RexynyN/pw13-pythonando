@@ -11,9 +11,16 @@ def mentorados(request: WSGIRequest):
         return redirect("login")
     
     if request.method == 'GET':
-        mentorados = Mentorados.objects.filter(user=request.user)
         navigators = Navigators.objects.filter(user=request.user)
-        return render(request, 'mentorados.html', {'estagios': Mentorados.estagio_choices, 'navigators': navigators, 'mentorados': mentorados})
+        mentorados = Mentorados.objects.filter(user=request.user)
+        
+        estagios_flat = [i[1] for i in Mentorados.estagio_choices]
+        qtd_estagios = []
+        for i, _ in Mentorados.estagio_choices:
+            qtd_estagios.append(Mentorados.objects.filter(estagio=i).count())
+
+        return render(request, 'mentorados.html', {'estagios': Mentorados.estagio_choices, 'navigators': navigators, 'mentorados': mentorados, 'estagios_flat': estagios_flat, 'qtd_estagios': qtd_estagios})
+
     elif request.method == 'POST':
         nome = request.POST.get('nome')
         foto = request.FILES.get('foto')
